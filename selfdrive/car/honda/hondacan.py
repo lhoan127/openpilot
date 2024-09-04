@@ -66,7 +66,10 @@ def create_brake_command(packer, CAN, apply_brake, pump_on, pcm_override, pcm_ca
     "AEB_STATUS": 0,
   }
 
-  if car_fingerprint == CAR.HONDA_CLARITY:
+ if car_fingerprint == CAR.HONDA_CLARITY:
+    values["COMPUTER_BRAKE_ALT"] = apply_brake
+    values["BRAKE_PUMP_REQUEST_ALT"] = apply_brake > 0
+  elif car_fingerprint == CAR.ACURA_MDX:
     values["COMPUTER_BRAKE_ALT"] = apply_brake
     values["BRAKE_PUMP_REQUEST_ALT"] = apply_brake > 0
   else:
