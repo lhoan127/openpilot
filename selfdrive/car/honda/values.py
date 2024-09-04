@@ -193,6 +193,12 @@ class CAR(Platforms):
   )
 
   # Nidec Cars
+  ACURA_MDX = HondaNidecPlatformConfig(
+    [HondaCarDocs("Acura MDX 2016-2019", "AcuraWatch Plus", min_steer_speed=3. * CV.MPH_TO_MS)],
+    CarSpecs(mass=4204 * CV.LB_TO_KG, wheelbase=2.82, steerRatio=15.66, centerToFrontRatio=0.428, tireStiffnessFactor=0.444),  # 15.0 as spec
+    dbc_dict('acura_mdx_2018_hybrid_generated', 'acura_ilx_2016_nidec'),
+    flags=HondaFlags.NIDEC_ALT_SCM_MESSAGES,
+  )
   ACURA_ILX = HondaNidecPlatformConfig(
     [HondaCarDocs("Acura ILX 2016-19", "AcuraWatch Plus", min_steer_speed=25. * CV.MPH_TO_MS)],
     CarSpecs(mass=3095 * CV.LB_TO_KG, wheelbase=2.67, steerRatio=18.61, centerToFrontRatio=0.37, tireStiffnessFactor=0.72),  # 15.3 is spec end-to-end
@@ -338,6 +344,7 @@ FW_QUERY_CONFIG = FwQueryConfig(
 STEER_THRESHOLD = {
   # default is 1200, overrides go here
   CAR.HONDA_ACCORD_4CYL_9TH_GEN: 30,
+  CAR.ACURA_MDX: 30,
   CAR.ACURA_RDX: 400,
   CAR.HONDA_CRV_EU: 400,
 }
@@ -346,7 +353,6 @@ HONDA_NIDEC_ALT_PCM_ACCEL = CAR.with_flags(HondaFlags.NIDEC_ALT_PCM_ACCEL)
 HONDA_NIDEC_ALT_SCM_MESSAGES = CAR.with_flags(HondaFlags.NIDEC_ALT_SCM_MESSAGES)
 HONDA_BOSCH = CAR.with_flags(HondaFlags.BOSCH)
 HONDA_BOSCH_RADARLESS = CAR.with_flags(HondaFlags.BOSCH_RADARLESS)
-SERIAL_STEERING = {CAR.HONDA_ACCORD_4CYL_9TH_GEN, }
-
+SERIAL_STEERING = {CAR.HONDA_ACCORD_4CYL_9TH_GEN, CAR.ACURA_MDX}
 
 DBC = CAR.create_dbc_map()
